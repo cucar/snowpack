@@ -47,6 +47,8 @@ const DEFAULT_CONFIG: Partial<SnowpackConfig> = {
     open: 'default',
     out: 'build',
     output: 'dashboard',
+    index: 'index.html',
+    entry: 'index.js',
     fallback: 'index.html',
     hmrDelay: 0,
     hmrPort: undefined,

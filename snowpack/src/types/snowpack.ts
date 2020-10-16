@@ -138,6 +138,8 @@ export interface SnowpackConfig {
     out: string;
     fallback: string;
     open: string;
+    index: string;
+    entry: string;
     output: 'stream' | 'dashboard';
     hmr?: boolean;
     hmrDelay: number;

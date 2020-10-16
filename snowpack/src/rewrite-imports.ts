@@ -26,10 +26,7 @@ export async function scanCodeImportsExports(code: string): Promise<any[]> {
   });
 }
 
-export async function transformEsmImports(
-  _code: string,
-  replaceImport: (specifier: string) => string,
-) {
+export async function transformEsmImports(_code: string, replaceImport: (specifier: string) => string) {
   const imports = await scanCodeImportsExports(_code);
   let rewrittenCode = _code;
   for (const imp of imports.reverse()) {
@@ -40,7 +37,7 @@ export async function transformEsmImports(
       webpackMagicCommentMatches = spec.match(WEBPACK_MAGIC_COMMENT_REGEX);
       spec = matchDynamicImportValue(spec) || '';
     }
-    let rewrittenImport = replaceImport(spec);
+    let rewrittenImport = await replaceImport(spec);
     if (imp.d > -1) {
       rewrittenImport = webpackMagicCommentMatches
         ? `${webpackMagicCommentMatches.join(' ')} ${JSON.stringify(rewrittenImport)}`
