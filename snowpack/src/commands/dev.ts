@@ -193,7 +193,7 @@ function sendResponseFile(
     Vary: 'Accept-Encoding',
   };
 
-  if (cache) headers['Cache-Control'] = 'max-age=604800'; // 1 week
+  if (req.url?.startsWith('/web_modules')) headers['Cache-Control'] = 'max-age=604800'; // 1 week
 
   if (req.headers['if-none-match'] === ETag) {
     res.writeHead(304, headers);
